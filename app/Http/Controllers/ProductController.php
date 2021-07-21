@@ -12,4 +12,10 @@ class ProductController extends Controller
 
         return view('product/index', compact('categories'));
     }
+
+    public function catalog() {
+        $categories = Category::all();
+
+        return view('product/all', compact('categories'));
+    }
 }

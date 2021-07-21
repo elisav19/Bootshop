@@ -3,73 +3,136 @@
 @section('title', 'Electro - HTML Ecommerce Template')
 
 @section('content')
-<!-- BREADCRUMB -->
-<div id="breadcrumb" class="section">
-    <!-- container -->
+<div id="mainBody">
     <div class="container">
-        <!-- row -->
         <div class="row">
-            <div class="col-md-12">
-                <h3 class="breadcrumb-header">Checkout</h3>
-                <ul class="breadcrumb-tree">
-                    <li><a href="#">Home</a></li>
-                    <li class="active">Checkout</li>
+            <!-- Sidebar ================================================== -->
+            @include ('layouts.sidebar')
+            <!-- Sidebar end=============================================== -->
+            <div class="span9">
+                <ul class="breadcrumb">
+                    <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+                    <li class="active"> SHOPPING CART</li>
                 </ul>
+                <h3> SHOPPING CART [ <small>3 Item(s) </small>]<a href="products.html" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a>
+                </h3>
+                <hr class="soft" />
+                <table class="table table-bordered">
+                    <tr>
+                        <th> I AM ALREADY REGISTERED </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label" for="inputUsername">Username</label>
+                                    <div class="controls">
+                                        <input type="text" id="inputUsername" placeholder="Username">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="inputPassword1">Password</label>
+                                    <div class="controls">
+                                        <input type="password" id="inputPassword1" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button type="submit" class="btn">Sign in</button> OR <a href="register.html" class="btn">Register Now!</a>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <a href="forgetpass.html" style="text-decoration:underline">Forgot
+                                            password ?</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <form class="form-horizontal">
+                                    <div class="control-group">
+                                        <label class="control-label"><strong> VOUCHERS CODE: </strong> </label>
+                                        <div class="controls">
+                                            <input type="text" class="input-medium" placeholder="CODE">
+                                            <button type="submit" class="btn"> ADD </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Description</th>
+                            <th>Quantity/Update</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> <img width="60" src="themes/images/products/4.jpg" alt="" /></td>
+                            <td>MASSA AST<br />Color : black, Material : metal</td>
+                            <td>
+                                <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text"><button class="btn" type="button"><i class="icon-minus"></i></button><button class="btn" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button> </div>
+                            </td>
+                            <td>$120.00</td>
+                            <td>$110.00</td>
+                        </tr>
+                        <tr>
+                            <td> <img width="60" src="themes/images/products/8.jpg" alt="" /></td>
+                            <td>MASSA AST<br />Color : black, Material : metal</td>
+                            <td>
+                                <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" size="16" type="text"><button class="btn" type="button"><i class="icon-minus"></i></button><button class="btn" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button> </div>
+                            </td>
+                            <td>$7.00</td>
+                            <td>$8.00</td>
+                        </tr>
+                        <tr>
+                            <td> <img width="60" src="themes/images/products/3.jpg" alt="" /></td>
+                            <td>MASSA AST<br />Color : black, Material : metal</td>
+                            <td>
+                                <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" size="16" type="text"><button class="btn" type="button"><i class="icon-minus"></i></button><button class="btn" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button> </div>
+                            </td>
+                            <td>$120.00</td>
+                            <td>$110.00</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="6" style="text-align:right">Total Price: </td>
+                            <td> $228.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" style="text-align:right">Total Discount: </td>
+                            <td> $00.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" style="text-align:right"><strong>TOTAL</strong>
+                            </td>
+                            <td class="label label-important" style="display:block"> <strong> $228.00 </strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a href="products.html" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping
+                </a>
+                <a href="login.html" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
+
             </div>
         </div>
-        <!-- /row -->
     </div>
-    <!-- /container -->
 </div>
-<!-- /BREADCRUMB -->
-
-<!-- SECTION -->
-<div class="section">
-    <!-- container -->
-    <div class="container bg-white rounded-top mt-5" id="zero-pad">
-        @if (isset($order))
-            <div class="shopping-cart">
-                @foreach ($order->products as $product)
-                <div class="item d-flex">
-                    <div class="image">
-                        <img src="/img/shop03.png" alt="" />
-                    </div>
-
-                    <div class="description">
-                        <span>{{ $product->name }}</span>
-                    </div>
-
-                    <div class="quantity d-flex">
-                        <form action="{{ route('basket-remove', $product) }}" method="post">
-                            <button class="minus-btn" type="submit" name="button">
-                                <img src="/img/minus.svg" alt="" />
-                            </button>
-                            @csrf
-                        </form>
-                        <input type="text" name="name" value="{{ $product->pivot->count }}">
-                        
-                        <form action="{{ route('basket-add', $product) }}" method="post">
-                            <button class="plus-btn" type="submit" name="button">
-                                <img src="/img/plus.svg" alt="" />
-                            </button>
-                            @csrf
-                        </form>
-                    </div>
-
-                    <div class="total-price">{{ $product->getPriceForCount() }}</div>
-                </div>
-                @endforeach
-
-                <div class="text-right">
-                    <span class="txt-bold">Total: {{ $order->getFullPrice() }} </span>
-                    <a href="{{ route('basket-checkout') }}" class="btn btn-danger">Checkout</a>
-                </div>
-            </div>
-        @else
-            <h2 style="color: red;">Cart is empty...</h2>
-        @endif
-    </div>
-    <!-- /container -->
-</div>
-<!-- /SECTION -->
 @endsection

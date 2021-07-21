@@ -3,326 +3,216 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootshop online Shopping cart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <title>@yield('title')</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link type="text/css" rel="stylesheet" href="/css/slick.css" />
-    <link type="text/css" rel="stylesheet" href="/css/slick-theme.css" />
-    <link type="text/css" rel="stylesheet" href="/css/nouislider.min.css" />
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
-    <!-- Font Awesome -->
-    <link type="text/css" rel="stylesheet" href="/css/style.css" />
+    <!-- Bootstrap style -->
+    <link id="callCss" rel="stylesheet" href="/themes/bootshop/bootstrap.min.css" media="screen" />
+    <link href="/themes/css/base.css" rel="stylesheet" media="screen" />
+    <!-- Bootstrap style responsive -->
+    <link href="/themes/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="/themes/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <!-- Google-code-prettify -->
+    <link href="/themes/js/google-code-prettify/prettify.css" rel="stylesheet" />
+    <!-- fav and touch icons -->
+    <link rel="shortcut icon" href="/themes/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/themes/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/themes/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/themes/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/themes/images/ico/apple-touch-icon-57-precomposed.png">
+    <style type="text/css" id="enject"></style>
 </head>
 
 <body>
-    <!-- HEADER -->
-    <header>
-        <!-- TOP HEADER -->
-        <div id="top-header">
-            <div class="container">
-                <ul class="header-links pull-left">
-                    <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                    <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-                    <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
-                </ul>
-                <ul class="header-links pull-right">
-                    <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                    <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-                </ul>
+    <div id="header">
+        <div class="container">
+            <div id="welcomeLine" class="row">
+                <div class="span6">Welcome!<strong> User</strong></div>
+                <div class="span6">
+                    <div class="pull-right">
+                        <a href="{{ route('basket') }}"><span class="">Fr</span></a>
+                        <a href="{{ route('basket') }}"><span class="">Es</span></a>
+                        <span class="btn btn-mini">En</span>
+                        <a href="{{ route('basket') }}"><span>&pound;</span></a>
+                        <span class="btn btn-mini">$155.00</span>
+                        <a href="{{ route('basket') }}"><span class="">$</span></a>
+                        <a href="{{ route('basket') }}"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ 3 ] Itemes in your cart </span>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!-- /TOP HEADER -->
-
-        <!-- MAIN HEADER -->
-        <div id="header">
-            <!-- container -->
-            <div class="container">
-                <!-- row -->
-                <div class="row">
-                    <!-- LOGO -->
-                    <div class="col-md-3">
-                        <div class="header-logo">
-                            <a href="/" class="logo">
-                                <img src="/img/logo.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /LOGO -->
-
-                    <!-- SEARCH BAR -->
-                    <div class="col-md-6">
-                        <div class="header-search">
-                            <form>
-                                <select class="input-select">
-                                    <option value="0">All Categories</option>
-                                    @foreach ($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
-                                    @endforeach
-                                </select>
-                                <input class="input" placeholder="Search here">
-                                <button class="search-btn">Search</button>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- /SEARCH BAR -->
-
-                    <!-- ACCOUNT -->
-                    <div class="col-md-3 clearfix">
-                        <div class="header-ctn">
-                            <!-- Wishlist -->
-                            <div>
-                                <a href="#">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span>Your Wishlist</span>
-                                    <div class="qty">2</div>
-                                </a>
-                            </div>
-                            <!-- /Wishlist -->
-
-                            <!-- Cart -->
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    <span>Your Cart</span>
-                                    <div class="qty">3</div>
-                                </a>
-                                <div class="cart-dropdown">
-                                    <div class="cart-list">
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/product01.png" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
+            <!-- Navbar ================================================== -->
+            <div id="logoArea" class="navbar">
+                <a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-inner">
+                    <a class="brand" href="{{ route('home') }}"><img src="/themes/images/logo.png" alt="Bootsshop" /></a>
+                    <form class="form-inline navbar-search" method="post" action="products.html">
+                        <input id="srchFld" class="srchTxt" type="text" />
+                        <select class="srchTxt">
+                            <option value="all">All</option>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
+                    </form>
+                    <ul id="topMenu" class="nav pull-right">
+                        <li class=""><a href="special_offer.html">Specials Offer</a></li>
+                        <li class=""><a href="normal.html">Delivery</a></li>
+                        <li class=""><a href="contact.html">Contact</a></li>
+                        <li class="">
+                            <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+                            <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h3>Login Block</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-horizontal loginFrm">
+                                        <div class="control-group">
+                                            <input type="text" id="inputEmail" placeholder="Email">
                                         </div>
-
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/product02.png" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                                <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
+                                        <div class="control-group">
+                                            <input type="password" id="inputPassword" placeholder="Password">
                                         </div>
-                                    </div>
-                                    <div class="cart-summary">
-                                        <small>3 Item(s) selected</small>
-                                        <h5>SUBTOTAL: $2940.00</h5>
-                                    </div>
-                                    <div class="cart-btns">
-                                        <a href="{{ route('basket') }}">View Cart</a>
-                                        <a href="{{ route('basket-checkout') }}">Checkout <i class="fa fa-arrow-circle-right"></i></a>
-                                    </div>
+                                        <div class="control-group">
+                                            <label class="checkbox">
+                                                <input type="checkbox"> Remember me
+                                            </label>
+                                        </div>
+                                    </form>
+                                    <button type="submit" class="btn btn-success">Sign in</button>
+                                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                                 </div>
                             </div>
-                            <!-- /Cart -->
-
-                            <!-- Menu Toogle -->
-                            <div class="menu-toggle">
-                                <a href="#">
-                                    <i class="fa fa-bars"></i>
-                                    <span>Menu</span>
-                                </a>
-                            </div>
-                            <!-- /Menu Toogle -->
-                        </div>
-                    </div>
-                    <!-- /ACCOUNT -->
+                        </li>
+                    </ul>
                 </div>
-                <!-- row -->
             </div>
-            <!-- container -->
         </div>
-        <!-- /MAIN HEADER -->
-    </header>
-    <!-- /HEADER -->
-
-    <!-- NAVIGATION -->
-    <nav id="navigation">
-        <!-- container -->
-        <div class="container">
-            <!-- responsive-nav -->
-            <div id="responsive-nav">
-                <!-- NAV -->
-                <ul class="main-nav nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Hot Deals</a></li>
-                    <li><a href="{{ route('categories') }}">Categories</a></li>
-                    <li><a href="#">Laptops</a></li>
-                    <li><a href="#">Smartphones</a></li>
-                    <li><a href="#">Cameras</a></li>
-                    <li><a href="#">Accessories</a></li>
-                </ul>
-                <!-- /NAV -->
-            </div>
-            <!-- /responsive-nav -->
-        </div>
-        <!-- /container -->
-    </nav>
-    <!-- /NAVIGATION -->
+    </div>
+    <!-- Header End====================================================================== -->
 
     @if(session()->has('success'))
-        <div class="container">
-            <div class="row">
-                <div class="alert alert-success" role="alert">
-                    {{ session()->get('success') }}
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-success" role="alert">
+                {{ session()->get('success') }}
             </div>
         </div>
+    </div>
     @endif
     @yield('content')
 
-    <!-- NEWSLETTER -->
-    <div id="newsletter" class="section">
-        <!-- container -->
+    <!-- Footer ================================================================== -->
+    <div id="footerSection">
         <div class="container">
-            <!-- row -->
             <div class="row">
-                <div class="col-md-12">
-                    <div class="newsletter">
-                        <p>Sign Up for the <strong>NEWSLETTER</strong></p>
-                        <form>
-                            <input class="input" type="email" placeholder="Enter Your Email">
-                            <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
-                        </form>
-                        <ul class="newsletter-follow">
-                            <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="span3">
+                    <h5>ACCOUNT</h5>
+                    <a href="login.html">YOUR ACCOUNT</a>
+                    <a href="login.html">PERSONAL INFORMATION</a>
+                    <a href="login.html">ADDRESSES</a>
+                    <a href="login.html">DISCOUNT</a>
+                    <a href="login.html">ORDER HISTORY</a>
+                </div>
+                <div class="span3">
+                    <h5>INFORMATION</h5>
+                    <a href="contact.html">CONTACT</a>
+                    <a href="register.html">REGISTRATION</a>
+                    <a href="legal_notice.html">LEGAL NOTICE</a>
+                    <a href="tac.html">TERMS AND CONDITIONS</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="span3">
+                    <h5>OUR OFFERS</h5>
+                    <a href="#">NEW PRODUCTS</a>
+                    <a href="#">TOP SELLERS</a>
+                    <a href="special_offer.html">SPECIAL OFFERS</a>
+                    <a href="#">MANUFACTURERS</a>
+                    <a href="#">SUPPLIERS</a>
+                </div>
+                <div id="socialMedia" class="span3 pull-right">
+                    <h5>SOCIAL MEDIA </h5>
+                    <a href="#"><img width="60" height="60" src="/themes/images/facebook.png" title="facebook" alt="facebook" /></a>
+                    <a href="#"><img width="60" height="60" src="/themes/images/twitter.png" title="twitter" alt="twitter" /></a>
+                    <a href="#"><img width="60" height="60" src="/themes/images/youtube.png" title="youtube" alt="youtube" /></a>
                 </div>
             </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
+            <p class="pull-right">&copy; Bootshop</p>
+        </div><!-- Container End -->
     </div>
-    <!-- /NEWSLETTER -->
 
-    <!-- FOOTER -->
-    <footer id="footer">
-        <!-- top footer -->
-        <div class="section">
-            <!-- container -->
-            <div class="container">
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-3 col-xs-6">
-                        <div class="footer">
-                            <h3 class="footer-title">About Us</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
-                            <ul class="footer-links">
-                                <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-                                <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-                                <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
-                            </ul>
-                        </div>
-                    </div>
+    <!-- Placed at the end of the document so the pages load faster ============================================= -->
+    <script src="/themes/js/jquery.js" type="text/javascript"></script>
+    <script src="/themes/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/themes/js/google-code-prettify/prettify.js"></script>
 
-                    <div class="col-md-3 col-xs-6">
-                        <div class="footer">
-                            <h3 class="footer-title">Categories</h3>
-                            <ul class="footer-links">
-                                <li><a href="#">Hot deals</a></li>
-                                <li><a href="#">Laptops</a></li>
-                                <li><a href="#">Smartphones</a></li>
-                                <li><a href="#">Cameras</a></li>
-                                <li><a href="#">Accessories</a></li>
-                            </ul>
-                        </div>
-                    </div>
+    <script src="/themes/js/bootshop.js"></script>
+    <script src="/themes/js/jquery.lightbox-0.5.js"></script>
 
-                    <div class="clearfix visible-xs"></div>
-
-                    <div class="col-md-3 col-xs-6">
-                        <div class="footer">
-                            <h3 class="footer-title">Information</h3>
-                            <ul class="footer-links">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Orders and Returns</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-xs-6">
-                        <div class="footer">
-                            <h3 class="footer-title">Service</h3>
-                            <ul class="footer-links">
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">View Cart</a></li>
-                                <li><a href="#">Wishlist</a></li>
-                                <li><a href="#">Track My Order</a></li>
-                                <li><a href="#">Help</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- /row -->
+    <!-- Themes switcher section ============================================================================================= -->
+    <div id="secectionBox">
+        <link rel="stylesheet" href="/themes/switch/themeswitch.css" type="text/css" media="screen" />
+        <script src="/themes/switch/theamswitcher.js" type="text/javascript" charset="utf-8"></script>
+        <div id="themeContainer">
+            <div id="hideme" class="themeTitle">Style Selector</div>
+            <div class="themeName">Oregional Skin</div>
+            <div class="images style">
+                <a href="/themes/css/#" name="bootshop"><img src="/themes/switch/images/clr/bootshop.png" alt="bootstrap business templates" class="active"></a>
+                <a href="/themes/css/#" name="businessltd"><img src="/themes/switch/images/clr/businessltd.png" alt="bootstrap business templates" class="active"></a>
             </div>
-            <!-- /container -->
-        </div>
-        <!-- /top footer -->
-
-        <!-- bottom footer -->
-        <div id="bottom-footer" class="section">
-            <div class="container">
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <ul class="footer-payments">
-                            <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
-                            <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-                            <li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
-                            <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-                            <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-                            <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-                        </ul>
-                        <span class="copyright">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>
-                                document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </span>
-                    </div>
-                </div>
-                <!-- /row -->
+            <div class="themeName">Bootswatch Skins (11)</div>
+            <div class="images style">
+                <a href="/themes/css/#" name="amelia" title="Amelia"><img src="/themes/switch/images/clr/amelia.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="spruce" title="Spruce"><img src="/themes/switch/images/clr/spruce.png" alt="bootstrap business templates"></a>
+                <a href="themes/css/#" name="superhero" title="Superhero"><img src="/themes/switch/images/clr/superhero.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="cyborg"><img src="/themes/switch/images/clr/cyborg.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="cerulean"><img src="/themes/switch/images/clr/cerulean.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="journal"><img src="/themes/switch/images/clr/journal.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="readable"><img src="/themes/switch/images/clr/readable.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="simplex"><img src="/themes/switch/images/clr/simplex.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="slate"><img src="/themes/switch/images/clr/slate.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="spacelab"><img src="/themes/switch/images/clr/spacelab.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="united"><img src="/themes/switch/images/clr/united.png" alt="bootstrap business templates"></a>
+                <p style="margin:0;line-height:normal;margin-left:-10px;display:none;"><small>These are just
+                        examples and you can build your own color scheme in the backend.</small></p>
             </div>
-            <!-- /container -->
+            <div class="themeName">Background Patterns </div>
+            <div class="images patterns">
+                <a href="/themes/css/#" name="pattern1"><img src="/themes/switch/images/pattern/pattern1.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern2"><img src="/themes/switch/images/pattern/pattern2.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern3"><img src="/themes/switch/images/pattern/pattern3.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern4"><img src="/themes/switch/images/pattern/pattern4.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern5"><img src="/themes/switch/images/pattern/pattern5.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern6"><img src="/themes/switch/images/pattern/pattern6.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern7"><img src="/themes/switch/images/pattern/pattern7.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern8"><img src="/themes/switch/images/pattern/pattern8.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern9"><img src="/themes/switch/images/pattern/pattern9.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern10"><img src="/themes/switch/images/pattern/pattern10.png" alt="bootstrap business templates"></a>
+
+                <a href="/themes/css/#" name="pattern11"><img src="/themes/switch/images/pattern/pattern11.png" alt="bootstrap business templates" class="active"></a>
+                <a href="/themes/css/#" name="pattern12"><img src="/themes/switch/images/pattern/pattern12.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern13"><img src="/themes/switch/images/pattern/pattern13.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern14"><img src="/themes/switch/images/pattern/pattern14.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern15"><img src="/themes/switch/images/pattern/pattern15.png" alt="bootstrap business templates"></a>
+
+                <a href="/themes/css/#" name="pattern16"><img src="/themes/switch/images/pattern/pattern16.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern17"><img src="/themes/switch/images/pattern/pattern17.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern18"><img src="/themes/switch/images/pattern/pattern18.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern19"><img src="/themes/switch/images/pattern/pattern19.png" alt="bootstrap business templates"></a>
+                <a href="/themes/css/#" name="pattern20"><img src="/themes/switch/images/pattern/pattern20.png" alt="bootstrap business templates"></a>
+
+            </div>
         </div>
-        <!-- /bottom footer -->
-    </footer>
-    <!-- /FOOTER -->
-
-    <!-- jQuery Plugins -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/slick.min.js"></script>
-    <script src="/js/nouislider.min.js"></script>
-    <script src="/js/jquery.zoom.min.js"></script>
-    <script src="/js/main.js"></script>
-
+    </div>
+    <span id="themesBtn"></span>
 </body>
 
 </html>

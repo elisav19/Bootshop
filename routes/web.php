@@ -19,3 +19,4 @@ Route::get('/categories', [CategoriesController::class, 'index'])->name('categor
 Route::get('/category/{slug}', [CategoryController::class, 'index'])->name('category');
 
 Route::get('/product/{slug}', [ProductController::class, 'index'])->name('product');
+Route::get('/catalog/', [ProductController::class, 'catalog'])->name('catalog');
