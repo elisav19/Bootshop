@@ -53,14 +53,7 @@
                 <div class="navbar-inner">
                     <a class="brand" href="{{ route('home') }}"><img src="/themes/images/logo.png" alt="Bootsshop" /></a>
                     <form class="form-inline navbar-search" method="post" action="products.html">
-                        <input id="srchFld" class="srchTxt" type="text" />
-                        <select class="srchTxt">
-                            <option value="all">All</option>
-                            @foreach ($categories as $category)
-                            <option value="{{ $category->slug }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                        <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
+                        <input id="srchFld" class="srchTxt" type="text" style="width: 400px; padding: 5px 30px;"/>
                     </form>
                     <ul id="topMenu" class="nav pull-right">
                         <li class=""><a href="special_offer.html">Specials Offer</a></li>
@@ -100,7 +93,7 @@
     <!-- Header End====================================================================== -->
 
     @if(session()->has('success'))
-    <div class="container">
+    <div class="container" style="margin-top: 10px;">
         <div class="row">
             <div class="alert alert-success" role="alert">
                 {{ session()->get('success') }}

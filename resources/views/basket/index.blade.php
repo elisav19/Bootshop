@@ -14,10 +14,16 @@
                     <li><a href="index.html">Home</a> <span class="divider">/</span></li>
                     <li class="active"> SHOPPING CART</li>
                 </ul>
-                <h3> SHOPPING CART [ <small>3 Item(s) </small>]<a href="products.html" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a>
+                <h3> SHOPPING CART
+                    @if (isset($order))
+                    [ <small>{{ count($order->products) }} Item(s) </small>]
+                    @endif
+                    <a href="{{ route('catalog') }}" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a>
                 </h3>
                 <hr class="soft" />
-                <table class="table table-bordered">
+
+                @if (isset($order))
+                <!-- <table class="table table-bordered">
                     <tr>
                         <th> I AM ALREADY REGISTERED </th>
                     </tr>
@@ -50,7 +56,7 @@
                             </form>
                         </td>
                     </tr>
-                </table>
+                </table> -->
 
                 <table class="table table-bordered">
                     <tbody>
@@ -58,7 +64,7 @@
                             <td>
                                 <form class="form-horizontal">
                                     <div class="control-group">
-                                        <label class="control-label"><strong> VOUCHERS CODE: </strong> </label>
+                                        <label class="control-label"><strong> VOUCHER'S CODE: </strong> </label>
                                         <div class="controls">
                                             <input type="text" class="input-medium" placeholder="CODE">
                                             <button type="submit" class="btn"> ADD </button>
@@ -82,55 +88,94 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($order->products as $product)
                         <tr>
                             <td> <img width="60" src="themes/images/products/4.jpg" alt="" /></td>
-                            <td>MASSA AST<br />Color : black, Material : metal</td>
+                            <td>{{ $product->name }}<br />Color : black, Material : metal</td>
                             <td>
-                                <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text"><button class="btn" type="button"><i class="icon-minus"></i></button><button class="btn" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button> </div>
+                                <div class="input-append">
+                                    <input class="span1" style="max-width:34px" value="{{ $product->pivot->count }}" id="appendedInputButtons" size="16" type="text">
+                                    <form action="{{ route('basket-remove', $product) }}" style="display: inline-block;" method="post">
+                                        <button class="btn" type="submit">
+                                            <i class="icon-minus"></i>
+                                        </button>
+                                        @csrf
+                                    </form>
+                                    <form action="{{ route('basket-add', $product) }}" style="display: inline-block;" method="post">
+                                        <button class="btn" type="submit">
+                                            <i class="icon-plus"></i>
+                                        </button>
+                                        @csrf
+                                    </form>
+                                </div>
                             </td>
-                            <td>$120.00</td>
-                            <td>$110.00</td>
+                            <td>${{ $product->price }}</td>
+                            <td>${{ $product->price * $product->pivot->count }}</td>
                         </tr>
-                        <tr>
-                            <td> <img width="60" src="themes/images/products/8.jpg" alt="" /></td>
-                            <td>MASSA AST<br />Color : black, Material : metal</td>
-                            <td>
-                                <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" size="16" type="text"><button class="btn" type="button"><i class="icon-minus"></i></button><button class="btn" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button> </div>
-                            </td>
-                            <td>$7.00</td>
-                            <td>$8.00</td>
-                        </tr>
-                        <tr>
-                            <td> <img width="60" src="themes/images/products/3.jpg" alt="" /></td>
-                            <td>MASSA AST<br />Color : black, Material : metal</td>
-                            <td>
-                                <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" size="16" type="text"><button class="btn" type="button"><i class="icon-minus"></i></button><button class="btn" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button> </div>
-                            </td>
-                            <td>$120.00</td>
-                            <td>$110.00</td>
-                        </tr>
+                        @endforeach
 
                         <tr>
-                            <td colspan="6" style="text-align:right">Total Price: </td>
-                            <td> $228.00</td>
+                            <td colspan="4" style="text-align:right">Total Price: </td>
+                            <td> {{ $order->getFullPrice() }}</td>
                         </tr>
                         <tr>
-                            <td colspan="6" style="text-align:right">Total Discount: </td>
+                            <td colspan="4" style="text-align:right">Total Discount: </td>
                             <td> $00.00</td>
                         </tr>
                         <tr>
-                            <td colspan="6" style="text-align:right"><strong>TOTAL</strong>
+                            <td colspan="4" style="text-align:right"><strong>To pay:</strong>
                             </td>
-                            <td class="label label-important" style="display:block"> <strong> $228.00 </strong>
+                            <td class="label label-important" style="display:block"> <strong> {{ $order->getFullPrice() }} </strong>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <a href="products.html" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping
-                </a>
-                <a href="login.html" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>ESTIMATE YOUR SHIPPING </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form class="form-horizontal" action="{{ route('checkout-confirm') }}" method="post">
+                                <div class="control-group">
+                                    <label class="control-label" for="inputCountry">Your name </label>
+                                    <div class="controls">
+                                        <input type="text" id="inputCountry" name="name" placeholder="Your name" style="width: 70%;">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="inputPost">Email</label>
+                                    <div class="controls">
+                                        <input type="email" id="inputPost" name="email" placeholder="Email" style="width: 70%;">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="inputPost">Phone</label>
+                                    <div class="controls">
+                                        <input type="text" id="inputPost" name="phone" placeholder="Phone number" style="width: 70%;">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="inputPost">Address</label>
+                                    <div class="controls">
+                                        <input type="text" id="inputPost" name="address" placeholder="Address" style="width: 70%;">
+                                    </div>
+                                </div>
 
+                                <a href="{{ route('catalog') }}" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping</a>
+
+                                <button class="btn btn-large btn-success pull-right" type="submit">
+                                    Place order
+                                </button>
+                                @csrf
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+                @else
+                <h2 style="color: red;">Cart is empty...</h2>
+                @endif
             </div>
         </div>
     </div>

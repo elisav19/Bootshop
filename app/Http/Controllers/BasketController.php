@@ -68,19 +68,6 @@ class BasketController extends Controller
         return redirect()->route('basket', compact('categories', 'order'));
     }
 
-    public function checkout() {
-        $categories = Category::all();
-        $orderId = session('orderId');
-
-        if (is_null($orderId)) {
-            return redirect()->route('basket');
-        }
-
-        $order = Order::find($orderId);
-
-        return view('basket/checkout', compact('categories', 'order'));
-    }
-
     public function checkoutConfirm(Request $request) {
         $orderId = session('orderId');
 
@@ -89,7 +76,7 @@ class BasketController extends Controller
         }
 
         $order = Order::find($orderId);
-        $success = $order->saveOrder($request->firstname, $request->tel);
+        $success = $order->saveOrder($request->name, $request->phone);
 
         if ($success) {
             session()->flash('success', 'Your order is accepted for processing');

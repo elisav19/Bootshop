@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index'])->name('home');
 
 Route::get('/basket', [BasketController::class, 'index'])->name('basket');
-Route::get('/basket/checkout', [BasketController::class, 'checkout'])->name('basket-checkout');
 Route::post('/basket/add/{id}', [BasketController::class, 'basketAdd'])->name('basket-add');
 Route::post('/basket/remove/{id}', [BasketController::class, 'basketRemove'])->name('basket-remove');
 Route::post('/basket/checkout', [BasketController::class, 'checkoutConfirm'])->name('checkout-confirm');
