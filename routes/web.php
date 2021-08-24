@@ -19,3 +19,7 @@ Route::get('/category/{slug}', [CategoryController::class, 'index'])->name('cate
 
 Route::get('/product/{slug}', [ProductController::class, 'index'])->name('product');
 Route::get('/catalog/', [ProductController::class, 'catalog'])->name('catalog');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
