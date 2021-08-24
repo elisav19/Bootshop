@@ -5,7 +5,10 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+Auth::routes();
 
 Route::get('/', [MainController::class, 'index'])->name('home');
 
@@ -19,7 +22,3 @@ Route::get('/category/{slug}', [CategoryController::class, 'index'])->name('cate
 
 Route::get('/product/{slug}', [ProductController::class, 'index'])->name('product');
 Route::get('/catalog/', [ProductController::class, 'catalog'])->name('catalog');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
