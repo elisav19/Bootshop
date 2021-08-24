@@ -1,0 +1,1 @@
+{"version":3,"file":"css/app.css","mappings":"AAAA,aACI,aACA,uBACA,UACJ,C","sources":["webpack:///./resources/sass/app.scss"],"sourcesContent":[".form-center {\n    display: flex;\n    justify-content: center;\n    width: 100%;\n}\n"],"names":[],"sourceRoot":""}

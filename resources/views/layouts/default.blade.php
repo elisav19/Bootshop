@@ -23,13 +23,18 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/themes/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/themes/images/ico/apple-touch-icon-57-precomposed.png">
     <style type="text/css" id="enject"></style>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div id="header">
         <div class="container">
             <div id="welcomeLine" class="row">
-                <div class="span6">Welcome!<strong> User</strong></div>
+
+                <div class="span6">Welcome<strong>@if (Auth::check()){{ ' ' . Auth::user()->firstname }}@endif</strong>!
+                </div>
                 <div class="span6">
                     <div class="pull-right">
                         <a href="{{ route('basket') }}"><span class="">Fr</span></a>
@@ -53,38 +58,27 @@
                 <div class="navbar-inner">
                     <a class="brand" href="{{ route('home') }}"><img src="/themes/images/logo.png" alt="Bootsshop" /></a>
                     <form class="form-inline navbar-search" method="post" action="products.html">
-                        <input id="srchFld" class="srchTxt" type="text" style="width: 400px; padding: 5px 30px;"/>
+                        <input id="srchFld" class="srchTxt" type="text" style="width: 400px; padding: 5px 30px;" />
                     </form>
                     <ul id="topMenu" class="nav pull-right">
                         <li class=""><a href="special_offer.html">Specials Offer</a></li>
                         <li class=""><a href="normal.html">Delivery</a></li>
                         <li class=""><a href="contact.html">Contact</a></li>
+                        @guest
                         <li class="">
-                            <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
-                            <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h3>Login</h3>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="form-horizontal loginFrm">
-                                        <div class="control-group">
-                                            <input type="text" id="inputEmail" placeholder="Email">
-                                        </div>
-                                        <div class="control-group">
-                                            <input type="password" id="inputPassword" placeholder="Password">
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="checkbox">
-                                                <input type="checkbox"> Remember me
-                                            </label>
-                                        </div>
-                                    </form>
-                                    <button type="submit" class="btn btn-success">Sign in</button>
-                                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                                </div>
-                            </div>
+                            <a href="{{ route('login') }}" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+                            </li>
+                            @else
+                            <li class="">
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <span class="btn btn-large btn-warning">{{ __('Logout') }}</span>
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                         </li>
+                        @endguest
                     </ul>
                 </div>
             </div>
@@ -97,6 +91,15 @@
         <div class="row">
             <div class="alert alert-success" role="alert">
                 {{ session()->get('success') }}
+            </div>
+        </div>
+    </div>
+    @endif
+    @if(session()->has('error'))
+    <div class="container" style="margin-top: 10px;">
+        <div class="row">
+            <div class="alert alert-error" role="alert">
+                {{ session()->get('error') }}
             </div>
         </div>
     </div>
