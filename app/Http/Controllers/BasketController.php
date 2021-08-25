@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class BasketController extends Controller
@@ -41,6 +42,11 @@ class BasketController extends Controller
             $order->products()->attach($productId);
         }
 
+        if (Auth::check()) {
+            $order->user_id = Auth::id();
+            $order->save();
+        }
+
         return redirect()->route('basket', compact('categories', 'order'));
     }
 
@@ -51,7 +57,7 @@ class BasketController extends Controller
         if (is_null($orderId)) {
             return redirect()->route('basket', compact('categories', 'order'));
         }
-        
+
         $order = Order::find($orderId);
 
         if ($order->products->contains($productId)) {
